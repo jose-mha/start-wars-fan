@@ -2,9 +2,9 @@ import React from 'react';
 
 const Favorites = () => {
   return (
-    <div>
+    <section className="w-full h-full pt-14">
       <h1>Favorites</h1>
-    </div>
+    </section>
   );
 };
 
