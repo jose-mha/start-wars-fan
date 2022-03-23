@@ -11,7 +11,7 @@ const useInfiniteScroll = () => {
 
   const handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
-    console.log('More Characters...');
+
     setIsFetching(true);
   };
 
