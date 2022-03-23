@@ -1,7 +1,16 @@
+import { useDispatch } from 'react-redux';
+import { setFavorite } from '../../actions';
+
 import { StarIcon } from '@heroicons/react/solid';
 
 const CharacterCard = ({ character }) => {
-  const color = 'text-gray-400';
+  const dispatch = useDispatch();
+
+  const handleFavorite = () => {
+    dispatch(setFavorite({ characterId: character.name.replace(/ /g, '') }));
+  };
+
+  const color = character.favorite ? 'text-yellow-500' : 'text-gray-400';
 
   if (!character) return null;
 
@@ -10,7 +19,7 @@ const CharacterCard = ({ character }) => {
       <div className="w-full h-5 rounded-t-lg bg-secondary"></div>
       <div className="p-3 flex flex-col items-center gap-4">
         <div className="w-full text-right">
-          <button className="w-7 h-7">
+          <button className="w-7 h-7" onClick={handleFavorite}>
             <StarIcon className={color} />
           </button>
         </div>
