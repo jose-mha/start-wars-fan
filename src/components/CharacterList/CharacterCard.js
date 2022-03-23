@@ -6,17 +6,33 @@ const CharacterCard = ({ character }) => {
   if (!character) return null;
 
   return (
-    <div className="PokemonCard w-50 h-64 p-3 flex flex-col items-center space-y-1 rounded-lg shadow-3xl">
-      <div className="w-full">
-        <button className="h-9 w-5">
-          <StarIcon className={color} />
-        </button>
+    <div className="w-64 h-72 rounded-lg shadow-3xl">
+      <div className="w-full h-5 rounded-t-lg bg-secondary"></div>
+      <div className="p-3 flex flex-col items-center gap-4">
+        <div className="w-full text-right">
+          <button className="w-7 h-7">
+            <StarIcon className={color} />
+          </button>
+        </div>
+        <p className="text-xl text-bold">{character.name}</p>
+
+        <hr className="w-10/12 h-px bg-slate-900 shadow-md" />
+
+        <div className="w-full flex flex-row justify-around gap-3">
+          <div className="text-center">
+            <p className="text-slate-700">Altura</p>
+            <p className="text-lg text-bold">{character.height}</p>
+          </div>
+          <div className="text-center">
+            <p className="text-slate-700">Peso</p>
+            <p className="text-lg text-bold">{character.mass}</p>
+          </div>
+        </div>
+        <div className="w-full text-center">
+          <p className="text-slate-700">Fecha de Nacimiento</p>
+          <p className="text-lg text-bold">{character.birth_year}</p>
+        </div>
       </div>
-      <hr className="w-full h-px bg-slate-900 shadow-md" />
-      <p className="text-lg text-bold text-slate-700">{character.name}</p>
-      <p className="text-lg text-bold text-slate-700">{character.height}</p>
-      <p className="text-lg text-bold text-slate-700">{character.mass}</p>
-      <p className="text-lg text-bold text-slate-700">{character.birth_year}</p>
     </div>
   );
 };

@@ -15,12 +15,12 @@ const Home = () => {
   const fetchCharacters = async () => {
     try {
       dispatch(toggleLoader());
+
       const response = await getCharacters();
-      console.log(response);
+
       dispatch(setCharacters(response.results));
       dispatch(toggleLoader());
     } catch (error) {
-      console.log('Error', error);
       dispatch(toggleLoader());
     }
   };
@@ -30,7 +30,7 @@ const Home = () => {
   }, []);
 
   return (
-    <section className="w-full h-full pt-14">
+    <section className="w-full h-full p-14">
       {loading && <Loader />}
       <CharacterList characters={characters} />
     </section>
