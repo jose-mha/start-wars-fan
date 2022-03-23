@@ -9,17 +9,15 @@ const CharacterList = ({ characters, favorites }) => {
     );
   }
 
+  if (favorites) {
+    characters = characters.filter((character) => character.favorite);
+  }
+
   return (
     <div className="w-full h-auto grid grid-cols-3 gap-4 pt-10">
-      {characters.map((character, index) => {
-        if (!favorites) {
-          return <CharacterCard character={character} itDelete={false} key={index} />;
-        }
-
-        if (character.favorite) {
-          return <CharacterCard character={character} itDelete={true} key={index} />;
-        }
-      })}
+      {characters.map((character, index) => (
+        <CharacterCard character={character} itDelete={favorites} key={index} />
+      ))}
     </div>
   );
 };
