@@ -1,13 +1,17 @@
 import { useDispatch } from 'react-redux';
-import { setFavorite } from '../../actions';
+import { setFavorite, deleteFavorite } from '../../actions';
 
 import { StarIcon } from '@heroicons/react/solid';
 
-const CharacterCard = ({ character }) => {
+const CharacterCard = ({ character, itDelete }) => {
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
-    dispatch(setFavorite({ characterId: character.name.replace(/ /g, '') }));
+    if (itDelete) {
+      dispatch(deleteFavorite({ characterId: character.name.replace(/ /g, '') }));
+    } else {
+      dispatch(setFavorite({ characterId: character.name.replace(/ /g, '') }));
+    }
   };
 
   const color = character.favorite ? 'text-yellow-500' : 'text-gray-400';

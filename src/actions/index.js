@@ -1,4 +1,4 @@
-import { SET_CHARACTERS, TOGGLE_LOADER, SET_FAVORITE } from './types';
+import { SET_CHARACTERS, TOGGLE_LOADER, SET_FAVORITE, DELETE_FAVORITE } from './types';
 
 // TODO: actions(acciones)
 export const setCharacters = (payload) => ({
@@ -8,6 +8,11 @@ export const setCharacters = (payload) => ({
 
 export const setFavorite = (payload) => ({
   type: SET_FAVORITE,
+  payload,
+});
+
+export const deleteFavorite = (payload) => ({
+  type: DELETE_FAVORITE,
   payload,
 });
 
