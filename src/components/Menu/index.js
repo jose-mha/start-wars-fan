@@ -8,7 +8,7 @@ const Menu = () => {
           <NavLink to="/">Home</NavLink>
         </li>
         <li className="font-bold text-md text-white hover:underline underline-offset-4">
-          <NavLink to="/favorites">Favorites</NavLink>
+          <NavLink to="/favorites">Favoritos</NavLink>
         </li>
       </ul>
     </nav>

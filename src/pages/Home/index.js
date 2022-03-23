@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <section className="w-full h-full p-14">
       {loading && <Loader />}
-      <CharacterList characters={characters} />
+      <CharacterList characters={characters} favorites={false} />
     </section>
   );
 };
