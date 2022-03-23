@@ -1,8 +1,10 @@
-import { SET_CHARACTERS, TOGGLE_LOADER, SET_FAVORITE, DELETE_FAVORITE } from '../actions/types';
+import { SET_CHARACTERS, TOGGLE_LOADER, SET_FAVORITE, DELETE_FAVORITE, ADD_CHARACTERS, IT_LOADED, NUM_PAGE } from '../actions/types';
 
 const initialState = {
   charactersList: [],
   loading: false,
+  itLoaded: false,
+  page: 2,
 };
 
 const setFavorite = (charactersList, characterId, itDelete = false) => {
@@ -26,6 +28,9 @@ const characterReducer = (state = initialState, action) => {
     case SET_CHARACTERS:
       return { ...state, charactersList: action.payload };
 
+    case ADD_CHARACTERS:
+      return { ...state, charactersList: [...state.charactersList, ...action.payload] };
+
     case SET_FAVORITE:
       return {
         ...state,
@@ -38,8 +43,15 @@ const characterReducer = (state = initialState, action) => {
         charactersList: setFavorite([...state.charactersList], action.payload.characterId, true),
       };
 
+    case NUM_PAGE:
+      return { ...state, page: action.payload };
+
     case TOGGLE_LOADER:
       return { ...state, loading: !state.loading };
+
+    case IT_LOADED:
+      return { ...state, itLoaded: !state.itLoaded };
+
     default:
       return state;
   }
