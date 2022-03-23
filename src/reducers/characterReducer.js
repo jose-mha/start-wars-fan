@@ -1,14 +1,17 @@
-import { SET_CHARACTERS } from '../actions/types';
+import { SET_CHARACTERS, TOGGLE_LOADER } from '../actions/types';
 
 const initialState = {
-  listCharacters: [],
+  charactersList: [],
+  loading: false,
 };
 
 // TODO: actions creators(creadores de acciones)
 const characterReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CHARACTERS:
-      return { ...state, listCharacters: action.payload };
+      return { ...state, charactersList: action.payload };
+    case TOGGLE_LOADER:
+      return { ...state, loading: !state.loading };
     default:
       return state;
   }

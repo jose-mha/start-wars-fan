@@ -1,26 +1,38 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setCharacters } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { setCharacters, toggleLoader } from '../../actions';
 import { getCharacters } from '../../api';
+
+import CharacterList from '../../components/CharacterList';
+import Loader from '../../components/Loader';
 
 const Home = () => {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.loading);
+  const characters = useSelector((state) => state.charactersList);
+
+  const fetchCharacters = async () => {
+    try {
+      dispatch(toggleLoader());
+      const response = await getCharacters();
+      console.log(response);
+      dispatch(setCharacters(response.results));
+      dispatch(toggleLoader());
+    } catch (error) {
+      console.log('Error', error);
+      dispatch(toggleLoader());
+    }
+  };
 
   useEffect(() => {
-    getCharacters()
-      .then((response) => {
-        console.log('Results', response.data);
-        dispatch(setCharacters(response.data.results));
-      })
-      .catch((error) => {
-        console.log('Results', error);
-      });
+    fetchCharacters();
   }, []);
 
   return (
     <section className="w-full h-full pt-14">
-      <h1>Home</h1>
+      {loading && <Loader />}
+      <CharacterList characters={characters} />
     </section>
   );
 };
